@@ -1,0 +1,49 @@
+{
+  "name": "metar-service",
+  "description": "REST service for translating METAR weather reports.",
+  "version": "0.1.0",
+  "author": "Tomaz Muraus <tomaz@tomaz.me>",
+  "contributors": [
+      {
+        "name": "Tomaz Muraus",
+        "email": "tomaz@tomaz.me",
+        "url": "http://www.tomaz.me"
+      }
+  ],
+  "keywords": [
+    "metar",
+    "aviation",
+    "service"
+  ],
+  "homepage": "https://github.com/Kami/node-metar-service",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Kami/node-metar-service"
+  },
+  "dependencies": {
+    "logmagic": "0.1.x",
+    "optimist": "0.6.x",
+    "underscore": "1.5.x",
+    "async": "0.2.x",
+    "express": "3.4.x",
+    "rate-limiter": "0.2.x",
+    "metar": "0.0.x"
+  },
+  "devDependencies": {
+     "jshint": "2.1.x"
+  },
+  "scripts": {
+    "test": "./scripts/tests.sh all",
+    "lint": "./scripts/lint.sh"
+  },
+  "engines": {
+    "node": ">= 0.8.0 && < 0.11.0"
+  },
+  "main": "./lib/index.js",
+  "licenses": [
+    {
+      "type": "Apache",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  ]
+}
