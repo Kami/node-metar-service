@@ -1,0 +1,7 @@
+.line {
+  cursor: pointer;
+}
+
+.line:hover {
+  background-color: white;
+}

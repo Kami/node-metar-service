@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--<link rel="shortcut icon" href="../../assets/ico/favicon.png">-->
+
+    <title>METAR Weather Reports REST Service</title>
+
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/sticky-footer.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/prettify.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="assets/js/html5shiv.js"></script>
+      <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body onload="prettyPrint()">
+
+    <!-- Wrap all page content here -->
+    <div id="wrap">
+
+      <!-- Begin page content -->
+      <div class="container">
+        <div class="page-header">
+          <h1>METAR Weather Information REST Service</h1>
+        </div>
+        <p class="lead">REST service which translates
+        <a href="http://en.wikipedia.org/wiki/METAR">METAR weather information</a>
+        into more easy to use machine readable format.</p>
+
+        <h2>Usage</h2>
+
+        <h3>Sending a single METAR value</h3>
+        <pre>curl -X POST -H "Content-Type: application/json" https://api.metarservice.com/metar -d '{"value": "METAR STRING"}'</pre>
+
+        <h3>Sending multiple METAR values</h3>
+
+        <pre>curl -X POST -H "Content-Type: application/json" https://api.metarservice.com/metar -d '{"value": ["METAR STRING 1", "METAR STRING 2", "METAR STRING N"]}'</pre>
+
+        <h2>Example Request & Response</h2>
+
+        <h3>Request</h3>
+        <pre>curl -X POST -H "Content-Type: application/json" http://api.metarservice.com/metar -d '{"value": "LBBG 041600Z 12003MPS 310V290 1400 +SN BKN022 OVC050 M04/M07 Q1020 NOSIG 9949//91="}'</pre>
+
+        <h3>Response</h3>
+        <div class="row">
+        <div class="col-md-7">
+        <pre id="example-response" class="prettyprint languague-js">
+{
+  "result": {
+      <span class="line" data-key="metar">"metar": "LBBG 041600Z 12003MPS 310V290 1400 +SN BKN022 OVC050 M04/M07 Q1020 NOSIG 9949//91=",</span>
+        "parsed": {
+          <span class="line" data-key="station">"station": "LBBG",</span>
+          <span class="line" data-key="time">"time": "2013-09-04T16:00:47.052Z",</span>
+          <span class="line" data-key="auto">"auto": false,</span>
+          <span class="line" data-key="wind">"wind": {</span>
+              <span class="line" data-key="wind_speed">"speed": 3,</span>
+              <span class="line" data-key="wind_gust">"gust": null,</span>
+              <span class="line" data-key="wind_direction">"direction": 120,</span>
+              <span class="line" data_key="wind_variation">"variation": {</span>
+                <span class="line" data-key="wind_variation_min">"min": 310,</span>
+                <span class="line" data-key="wind_variation_max">"max": 290</span>
+              },
+              <span class="line" data-key="wind_unit">"unit": "MPS"</span>
+          },
+          <span class="line" data-key="cavok">"cavok": false,</span>
+          <span class="line" data-key="visibility">"visibility": 1400,</span>
+          <span class="line" data-key="weather">"weather": [</span>
+            {
+              <span class="line" data-key="weather_abbreiation">"abbreviation": "+",</span>
+              <span class="line" data-key="weather_meaning">"meaning": "heavy intensity"</span>
+            },
+            {
+              <span class="line" data-key="weather_abbreiation">"abbreviation": "SN",</span>
+              <span class="line" data-key="weather_meaning">"meaning": "snow"</span>
+            }
+          ],
+          "clouds": [</span>
+            {
+              "abbreviation": "BKN",</span>
+              "meaning": "broken",</span>
+              "altitude": 2200,</span>
+              "cumulonimbus": false</span>
+            },
+            {
+              "abbreviation": "OVC",</span>
+              "meaning": "overcast",</span>
+              "altitude": 5000,</span>
+              "cumulonimbus": false</span>
+            }
+          ],
+          <span class="line" data-key="temperature">"temperature": -4,</span>
+          <span class="line" data-key="dewPointTemperature">"dewPointTemperature": -7</span>
+      }
+  }
+}
+        </pre>
+          </div>
+          <div class="col-md-5">
+            <p id="help-text" class="lead" style="position:absolute">Hover or click on a line to get an explanation.</p>
+          </div>
+        </div>
+
+        <h2>API Service Limits</h2>
+        <p>Service is free to use, but to prevent abuse, there are some limits in place:</p>
+        <ul>
+          <li>Maximum number of requests - 1000 in 24 hours</li>
+          <li>Maximum body size - 2 KB (around ~20 METAR strings)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="footer">
+      <div class="container text-center">
+        <p class="text-muted credit">Copyright © 2013 <a href="http://www.tomaz.me">Tomaz Muraus</a></p>
+      </div>
+    </div>
+
+  <script src="assets/js/jquery-1.10.2.min.js"></script>
+  <script type="text/javascript" src="assets/js/prettify/prettify.js"></script>
+  <script src="assets/js/definitions.js"></script>
+  <script src="assets/js/main.js"></script>
+  </body>
+</html>
