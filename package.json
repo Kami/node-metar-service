@@ -27,7 +27,7 @@
     "async": "0.2.x",
     "express": "3.4.x",
     "rate-limiter": "0.2.x",
-    "metar": "0.0.x"
+    "metar": "git+https://github.com/Kami/metar.js.git#develop"
   },
   "devDependencies": {
      "jshint": "2.1.x"
